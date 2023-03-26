@@ -1,0 +1,54 @@
+Define a function named posterize. 
+This function expects an image and a tuple of RGB values as arguments. 
+The function modifies the image like the blackAndWhite function developed in Chapter 7 and shown below, 
+but it uses passed in RGB values instead of black.
+
+def blackAndWhite(image):
+    """Converts the argument image to black and white."""
+    blackPixel = (0, 0, 0)
+    whitePixel = (255, 255, 255)
+    for y in range(image.getHeight()):
+        for x in range(image.getWidth()):
+            (r, g, b) = image.getPixel(x, y)
+            average = (r + g + b) // 3
+            if average < 128:
+                image.setPixel(x, y, blackPixel)
+            else:
+                image.setPixel(x, y, whitePixel)
+               
+ 
+"""
+File: posterize.py
+Project 7.5
+
+Defines and tests a function for posterizing images.
+"""
+
+from images import Image
+
+
+def posterize(image, rgbTuple):
+    whitePixel = (255, 255, 255)
+    for y in range(image.getHeight()):
+        for x in range(image.getWidth()):
+            (r, g, b) = image.getPixel(x, y)
+            average = (r + g + b) // 3
+            if average < 128:
+                image.setPixel(x, y, rgbTuple)
+            else:
+                image.setPixel(x, y, whitePixel)
+
+def main():
+    filename = input("Enter the image file name: ")
+    red = int(input("Enter an integer [0..255] for red: "))
+    green = int(input("Enter an integer [0..255] for green: "))
+    blue = int(input("Enter an integer [0..255] for blue: "))                    
+    image = Image(filename)
+    rgbTuple = (int(red), int(green), int(blue))
+    posterize(image, rgbTuple)
+    image.draw()
+
+if __name__ == "__main__":
+   main()
+
+
