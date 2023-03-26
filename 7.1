@@ -1,0 +1,34 @@
+##Define a function drawCircle. This function should expect a Turtle object, 
+the coordinates of the circle’s center point, and the circle’s radius as arguments. 
+The function should draw the specified circle. The algorithm should draw the circle’s circumference 
+by turning 3 degrees and moving a given distance 120 times. 
+
+Calculate the distance moved with the formula 2.0 × π × radius ÷ 120.0.
+
+Define a function main that will draw a circle with the following parameters when the program is run:
+
+X = 50
+Y = 75
+Radius = 100
+
+from turtle import Turtle
+import math
+def main():
+    t = Turtle()
+    x = 50
+    y = 75
+    radius = 100
+    drawCricle(t, x, y, radius)
+def drawCricle(t, x, y, radius):
+    t.up()
+    t.goto(x,y)
+    t.forward(100)
+    t.left(90)
+    t.down()
+    forwardGo = (2.0 * math.pi * radius)/120
+    for _ in range(120):
+        t.left(3)
+        t.forward(forwardGo)
+        
+if __name__ == "__main__":
+    main()
